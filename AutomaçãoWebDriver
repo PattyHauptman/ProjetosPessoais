@@ -1,0 +1,51 @@
+# Automação de pesquisa do válor do Dólar na internet e envio da informação pelo WhatsApp.
+
+# Projeto para treinar a utilização do Selenium
+
+import time
+import pyautogui
+import pyperclip
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+navegador = webdriver.Edge()
+navegador.get("https://www.google.com/")
+
+navegador.find_element(By.XPATH,'/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input').send_keys('cotação do dolar')
+
+navegador.find_element(By.XPATH,'/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input').send_keys(Keys.ENTER)
+
+cotacao_dolar = float(navegador.find_element(By.XPATH,'/html/body/div[7]/div/div[10]/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[1]/div[2]/span[1]').get_attribute('data-value'))
+print(cotacao_dolar)
+
+pyautogui.PAUSE = 1
+time.sleep(1)
+pyautogui.press("win")
+
+time.sleep(2)
+pyautogui.write("whatsapp")
+pyautogui.press("enter")
+
+time.sleep(10)
+pyautogui.press("tab")
+time.sleep(4)
+pyautogui.write("Erick")
+
+i = 0
+while i < 9:
+    pyautogui.press("tab")
+    i += 1
+
+pyperclip.copy(f"""
+Bom dia!!  
+
+A cotação do dólar é R$ {cotacao_dolar:,.2f} !!
+
+Essa mensagem foi enviada pelo Python, que também pegou a cotação do dólar no Google.
+
+""")
+
+pyautogui.hotkey('ctrl', 'v')
+
+pyautogui.press("enter")
