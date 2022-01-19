@@ -1,0 +1,39 @@
+# Projeto de automação para ativação do proxy
+# Etapas: Importar bibliotecas / Iniciar (Win) / Pesquisar por "Proxy" / Acessar / Clicar em Configurar (Configuração de proxy manual)/ Ativar / Salvar / Fechar
+
+# Desenvolvi esse projeto para treinar o que aprendi refernte à automação. A escolha do projeto foi por ser uma ação que executo todos os dias.
+
+import time
+import pyautogui
+import pandas as pd
+
+pyautogui.PAUSE = 0.5
+
+time.sleep(1.5)
+pyautogui.press("win")
+
+time.sleep(1)
+pyautogui.write("proxy")
+pyautogui.press("enter")
+
+time.sleep(1)
+i = 0
+while i < 4:
+    pyautogui.press("tab")
+    i += 1
+
+pyautogui.press("enter")
+
+pyautogui.press("space")
+
+time.sleep(3)
+i = 0
+while i < 5:
+    pyautogui.press("tab")
+    i += 1
+pyautogui.press("enter")
+
+time.sleep(1)
+pyautogui.hotkey("alt", "fn", "f4")
+
+#pyinstaller --onefile proxyon.py
