@@ -1,3 +1,5 @@
+![GitHub_Logo](mind-g4702e20fa_640.png)
+
 # **Descrição**
 
 Arquivos de teste e estudo, baseado nos conteúdos estudados em diversos cursos.
